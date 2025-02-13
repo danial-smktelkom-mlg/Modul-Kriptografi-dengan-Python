@@ -1,7 +1,3 @@
----
-
-
----
 
 <h1 id="modul-kriptografi-dengan-python">Modul Kriptografi dengan Python</h1>
 <p><em>(Lingkungan: Kali Linux &amp; Visual Studio Code)</em></p>
