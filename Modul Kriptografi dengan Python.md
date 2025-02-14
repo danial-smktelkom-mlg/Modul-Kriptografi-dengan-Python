@@ -1,3 +1,7 @@
+---
+
+
+---
 
 <h1 id="modul-kriptografi-dengan-python">Modul Kriptografi dengan Python</h1>
 <p><em>(Lingkungan: Kali Linux &amp; Visual Studio Code)</em></p>
@@ -103,7 +107,6 @@ Karena membalik string adalah proses yang sama, dekripsi dilakukan dengan membal
         cipher_text <span class="token operator">+=</span> pesan<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
         i <span class="token operator">-=</span> <span class="token number">1</span>
     <span class="token keyword">return</span> cipher_text
-
 <span class="token comment"># Contoh penggunaan</span>
 pesan_asli <span class="token operator">=</span> <span class="token string">"This is program to explain reverse cipher."</span>
 cipher <span class="token operator">=</span> reverse_cipher<span class="token punctuation">(</span>pesan_asli<span class="token punctuation">)</span>
@@ -186,36 +189,42 @@ Untuk setiap huruf, geser posisinya di alfabet. Karakter non-huruf tidak berubah
         <span class="token keyword">else</span><span class="token punctuation">:</span>
             hasil <span class="token operator">+=</span> char
     <span class="token keyword">return</span> hasil
-
 <span class="token keyword">def</span> <span class="token function">caesar_decrypt</span><span class="token punctuation">(</span>teks<span class="token punctuation">,</span> pergeseran<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">return</span> caesar_encrypt<span class="token punctuation">(</span>teks<span class="token punctuation">,</span> <span class="token operator">-</span>pergeseran<span class="token punctuation">)</span>
 
+
 <span class="token comment"># Contoh penggunaan</span>
-pesan_asli <span class="token operator">=</span> <span class="token string">"CEASER CIPHER DEMO"</span>
-pergeseran <span class="token operator">=</span> <span class="token number">4</span>
+pesan_asli <span class="token operator">=</span> <span class="token string">"Contoh"</span>
+pergeseran <span class="token operator">=</span> <span class="token number">13</span>
 cipher <span class="token operator">=</span> caesar_encrypt<span class="token punctuation">(</span>pesan_asli<span class="token punctuation">,</span> pergeseran<span class="token punctuation">)</span>
 plain <span class="token operator">=</span> caesar_decrypt<span class="token punctuation">(</span>cipher<span class="token punctuation">,</span> pergeseran<span class="token punctuation">)</span>
+
 
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Pesan Asli    :"</span><span class="token punctuation">,</span> pesan_asli<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cipher Text   :"</span><span class="token punctuation">,</span> cipher<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Dekripsi Hasil:"</span><span class="token punctuation">,</span> plain<span class="token punctuation">)</span>
 </code></pre>
 <h4 id="contoh-hacking-caesar-cipher-brute-force">Contoh Hacking Caesar Cipher (Brute Force)</h4>
-<pre class=" language-python"><code class="prism  language-python">message <span class="token operator">=</span> <span class="token string">'GIEWIVrGMTLIVrHIQS'</span>  <span class="token comment"># pesan terenkripsi</span>
+<pre class=" language-python"><code class="prism  language-python">message <span class="token operator">=</span> <span class="token string">'Ykjpkd'</span>  <span class="token comment"># Encrypted message</span>
 LETTERS <span class="token operator">=</span> <span class="token string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
+
+<span class="token comment"># Convert message to uppercase</span>
+message <span class="token operator">=</span> message<span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 <span class="token keyword">for</span> key <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>LETTERS<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     translated <span class="token operator">=</span> <span class="token string">''</span>
+    
     <span class="token keyword">for</span> symbol <span class="token keyword">in</span> message<span class="token punctuation">:</span>
         <span class="token keyword">if</span> symbol <span class="token keyword">in</span> LETTERS<span class="token punctuation">:</span>
-            num <span class="token operator">=</span> LETTERS<span class="token punctuation">.</span>find<span class="token punctuation">(</span>symbol<span class="token punctuation">)</span>
-            num <span class="token operator">=</span> num <span class="token operator">-</span> key
+            num <span class="token operator">=</span> LETTERS<span class="token punctuation">.</span>find<span class="token punctuation">(</span>symbol<span class="token punctuation">)</span> <span class="token operator">-</span> key  <span class="token comment"># Shift backwards</span>
             <span class="token keyword">if</span> num <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                num <span class="token operator">+=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>LETTERS<span class="token punctuation">)</span>
+                num <span class="token operator">+=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>LETTERS<span class="token punctuation">)</span>  <span class="token comment"># Wrap around</span>
             translated <span class="token operator">+=</span> LETTERS<span class="token punctuation">[</span>num<span class="token punctuation">]</span>
         <span class="token keyword">else</span><span class="token punctuation">:</span>
-            translated <span class="token operator">+=</span> symbol
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hacking key #%s: %s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> translated<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            translated <span class="token operator">+=</span> symbol  <span class="token comment"># Keep non-alphabet characters unchanged</span>
+    
+    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"Hacking key #{key}: {translated}"</span><span class="token punctuation">)</span>
+
 </code></pre>
 <p><em>Penjelasan:</em> Kode di atas mencoba setiap nilai pergeseran (0–25) untuk menemukan kemungkinan dekripsi pesan.</p>
 <h4 id="latihan-caesar-cipher-latihan-terpandu">Latihan Caesar Cipher (Latihan Terpandu)</h4>
@@ -273,19 +282,20 @@ Gunakan contoh seperti <code>"SMK"</code> dan <code>"smk"</code>.</p>
 <p>ROT13 adalah kasus khusus dari Caesar Cipher dengan pergeseran tetap 13. Karena alfabet terdiri atas 26 huruf, penerapan ROT13 dua kali akan mengembalikan pesan asli.</p>
 <h4 id="contoh-kode-2">Contoh Kode</h4>
 <pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> string
-
 <span class="token keyword">def</span> <span class="token function">rot13</span><span class="token punctuation">(</span>teks<span class="token punctuation">)</span><span class="token punctuation">:</span>
     tabel_trans <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">.</span>maketrans<span class="token punctuation">(</span>
-        string<span class="token punctuation">.</span>ascii_uppercase <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>
-        string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span> <span class="token operator">+</span>
-        string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span>
-    <span class="token punctuation">)</span>
+string<span class="token punctuation">.</span>ascii_uppercase <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>
+string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span> <span class="token operator">+</span>
+string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
     <span class="token keyword">return</span> teks<span class="token punctuation">.</span>translate<span class="token punctuation">(</span>tabel_trans<span class="token punctuation">)</span>
 
+
 <span class="token comment"># Contoh penggunaan</span>
-pesan_asli <span class="token operator">=</span> <span class="token string">"ROT13 Algorithm"</span>
+pesan_asli <span class="token operator">=</span> <span class="token string">"Contoh"</span>
 cipher <span class="token operator">=</span> rot13<span class="token punctuation">(</span>pesan_asli<span class="token punctuation">)</span>
 plain <span class="token operator">=</span> rot13<span class="token punctuation">(</span>cipher<span class="token punctuation">)</span>  <span class="token comment"># Penerapan kedua mengembalikan pesan asli</span>
+
 
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Pesan Asli   :"</span><span class="token punctuation">,</span> pesan_asli<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cipher Text  :"</span><span class="token punctuation">,</span> cipher<span class="token punctuation">)</span>
@@ -361,12 +371,16 @@ Contoh: <code>"SMK"</code>.</p>
         string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span> <span class="token operator">+</span>
         string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span>
     <span class="token punctuation">)</span>
+    
     <span class="token comment"># Tabel translasi untuk digit dengan ROT5</span>
     rot5_table <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">.</span>maketrans<span class="token punctuation">(</span><span class="token string">"0123456789"</span><span class="token punctuation">,</span> <span class="token string">"5678901234"</span><span class="token punctuation">)</span>
+    
     <span class="token comment"># Terapkan ROT13 untuk huruf</span>
     hasil <span class="token operator">=</span> teks<span class="token punctuation">.</span>translate<span class="token punctuation">(</span>rot13_table<span class="token punctuation">)</span>
+    
     <span class="token comment"># Terapkan ROT5 untuk digit</span>
     hasil <span class="token operator">=</span> hasil<span class="token punctuation">.</span>translate<span class="token punctuation">(</span>rot5_table<span class="token punctuation">)</span>
+    
     <span class="token keyword">return</span> hasil
 
 <span class="token comment"># Contoh penggunaan</span>
@@ -374,9 +388,10 @@ pesan_asli <span class="token operator">=</span> <span class="token string">"ROT
 cipher <span class="token operator">=</span> rot18<span class="token punctuation">(</span>pesan_asli<span class="token punctuation">)</span>
 plain <span class="token operator">=</span> rot18<span class="token punctuation">(</span>cipher<span class="token punctuation">)</span>  <span class="token comment"># Penerapan kedua mengembalikan pesan asli</span>
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Pesan Asli   :"</span><span class="token punctuation">,</span> pesan_asli<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cipher Text  :"</span><span class="token punctuation">,</span> cipher<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Pesan Asli    :"</span><span class="token punctuation">,</span> pesan_asli<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cipher Text   :"</span><span class="token punctuation">,</span> cipher<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Dekripsi Hasil:"</span><span class="token punctuation">,</span> plain<span class="token punctuation">)</span>
+
 </code></pre>
 <h4 id="latihan-rot18-latihan-terpandu">Latihan ROT18 (Latihan Terpandu)</h4>
 <ol>
