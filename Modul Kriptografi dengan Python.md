@@ -1,12 +1,16 @@
-
 # Modul Kriptografi dengan Python  
 *(Lingkungan: Kali Linux & Visual Studio Code)*
 
-Modul ini bertujuan agar kalian memahami dasar-dasar kriptografi melalui teori dan praktik. Materi yang disampaikan mencakup:  
-- **Definisi & Terminologi Kriptografi**  
-- **Double Strength Encryption**  
-- **Pengenalan Python & Instalasi Paket Kriptografi**  
-- **Implementasi Teknik Enkripsi:** Reverse Cipher, Caesar Cipher (beserta metode brute force), ROT13, dan ROT18.
+Modul ini bertujuan agar kalian memahami dasar-dasar kriptografi melalui teori dan praktik. Materi yang disampaikan mencakup:
+
+- **Definisi & Terminologi Kriptografi**
+- **Double Strength Encryption**
+- **Pengenalan Python & Instalasi Paket Kriptografi**
+- **Implementasi Teknik Enkripsi:**  
+  - Reverse Cipher  
+  - Caesar Cipher (beserta metode brute force)  
+  - ROT13  
+  - ROT18
 
 ---
 
@@ -14,17 +18,26 @@ Modul ini bertujuan agar kalian memahami dasar-dasar kriptografi melalui teori d
 
 ### 1.1 Overview dan Terminologi
 
-**Kriptografi** adalah seni dan ilmu menyembunyikan pesan dengan cara mengubah pesan asli (plain text) menjadi pesan yang tidak bisa dibaca (cipher text) agar hanya pihak yang dituju yang dapat mengerti isinya.  
-Terminologi penting:  
-- **Plain Text:** Pesan asli yang dapat dibaca oleh siapa saja.  
-- **Cipher Text:** Pesan yang telah diubah melalui proses enkripsi sehingga tidak dapat langsung dipahami.  
-- **Enkripsi (Encoding):** Proses mengubah plain text menjadi cipher text.  
-- **Dekripsi (Decoding):** Proses mengembalikan cipher text ke bentuk plain text.
+**Kriptografi** adalah seni dan ilmu menyembunyikan pesan dengan cara mengubah pesan asli (plain text) menjadi pesan yang tidak bisa dibaca (cipher text), sehingga hanya pihak yang dituju yang dapat mengerti isinya.
+
+**Terminologi penting:**
+
+- **Plain Text:**  
+  Pesan asli yang dapat dibaca oleh siapa saja.
+
+- **Cipher Text:**  
+  Pesan yang telah diubah melalui proses enkripsi sehingga tidak dapat langsung dipahami.
+
+- **Enkripsi (Encoding):**  
+  Proses mengubah plain text menjadi cipher text.
+
+- **Dekripsi (Decoding):**  
+  Proses mengembalikan cipher text ke bentuk plain text.
 
 ### 1.2 Double Strength Encryption
 
 Double Strength Encryption (atau multiple/cascade encryption) adalah proses mengenkripsi pesan yang sudah dienkripsi sekali lagi—menggunakan algoritma yang sama atau berbeda.  
-**Contoh tingkatannya:**
+Contoh tingkatannya:
 
 - **Lapisan Pertama:**  
   Cipher text dihasilkan dari pesan asli menggunakan algoritma hash dan kunci simetris. Selanjutnya, kunci simetris tersebut dienkripsi dengan kunci asimetris untuk memastikan integritas pesan.
@@ -41,19 +54,30 @@ Double Strength Encryption (atau multiple/cascade encryption) adalah proses meng
 
 ### 2.1 Overview Python
 
-Python adalah bahasa pemrograman open source yang mudah dipahami, bersifat high-level, dan mendukung pemrograman berorientasi objek.  
-**Fitur utama Python:**
-- **Interpreted:** Tidak perlu proses kompilasi sebelum eksekusi.  
-- **Object-Oriented:** Mendukung konsep kelas, enkapsulasi, dan polimorfisme.  
-- **Fleksibel:** Dapat digunakan sebagai bahasa scripting maupun pemrograman penuh.  
-- **Garbage Collection:** Mengelola memori secara otomatis.  
-- **Integrasi dengan Bahasa Lain:** Bisa diintegrasikan dengan C, C++, dan Java.
+Python adalah bahasa pemrograman open source yang mudah dipahami, bersifat high-level, dan mendukung pemrograman berorientasi objek.
 
-*Unduh Python dari:* [www.python.org/downloads](https://www.python.org/downloads)
+**Fitur utama Python:**
+
+- **Interpreted:**  
+  Tidak perlu proses kompilasi sebelum eksekusi.
+
+- **Object-Oriented:**  
+  Mendukung konsep kelas, enkapsulasi, dan polimorfisme.
+
+- **Fleksibel:**  
+  Dapat digunakan sebagai bahasa scripting maupun pemrograman penuh.
+
+- **Garbage Collection:**  
+  Mengelola memori secara otomatis.
+
+- **Integrasi dengan Bahasa Lain:**  
+  Bisa diintegrasikan dengan C, C++, dan Java.
+
+Unduh Python dari: [www.python.org/downloads](https://www.python.org/downloads)
 
 ### 2.2 Instalasi Python di Kali Linux melalui Terminal
 
-Untuk menginstal Python di Kali Linux, buka terminal dan ikuti langkah berikut:
+Buka terminal dan ikuti langkah-langkah berikut:
 
 1. **Perbarui Daftar Paket dan Sistem:**
    ```bash
@@ -69,17 +93,20 @@ Untuk menginstal Python di Kali Linux, buka terminal dan ikuti langkah berikut:
    ```bash
    python3 --version
    ```
-   Pastikan versi yang terinstal sesuai dengan kebutuhan (misalnya, Python 3.8 atau yang lebih baru).
+   Pastikan versi yang terinstal sesuai kebutuhan (misalnya, Python 3.8 atau lebih baru).
 
 ### 2.3 Instalasi Visual Studio Code di Kali Linux
 
-1. **Unduh Paket VS Code (.deb) dari [situs resmi VS Code](https://code.visualstudio.com/).**  
-2. **Install Paket dengan Perintah:**
+1. **Unduh Paket VS Code (.deb)**  
+   Kunjungi situs resmi [Visual Studio Code](https://code.visualstudio.com/) dan unduh file .deb untuk Linux.
+
+2. **Instal Paket dengan Perintah:**
    ```bash
    sudo dpkg -i code_*.deb
    sudo apt --fix-broken install
    ```
-3. **Buka VS Code dengan Perintah:**
+
+3. **Buka VS Code:**
    ```bash
    code
    ```
@@ -97,14 +124,13 @@ pip3 install cryptography
 
 Pada bab ini, kita akan mempraktikkan empat teknik enkripsi sederhana. Setiap teknik dijelaskan dengan algoritma, contoh kode, penjelasan, serta disertai latihan terpandu dan tugas praktik.
 
----
-
 ### 3.1 Reverse Cipher
 
 #### Konsep dan Algoritma
-Reverse Cipher adalah teknik paling sederhana dengan cara membalik urutan karakter pesan.  
-- **Proses Enkripsi & Dekripsi:**  
-  Karena membalik string adalah proses yang sama, dekripsi dilakukan dengan membalik kembali cipher text.
+
+Reverse Cipher adalah teknik paling sederhana dengan cara membalik urutan karakter pada pesan.  
+**Proses Enkripsi & Dekripsi:**  
+Karena membalik string adalah proses yang sama, dekripsi dilakukan dengan membalik kembali cipher text.
 
 #### Contoh Kode
 ```python
@@ -115,6 +141,7 @@ def reverse_cipher(pesan):
         cipher_text += pesan[i]
         i -= 1
     return cipher_text
+
 # Contoh penggunaan
 pesan_asli = "This is program to explain reverse cipher."
 cipher = reverse_cipher(pesan_asli)
@@ -123,6 +150,7 @@ print("Cipher Text  :", cipher)
 ```
 
 #### Latihan Reverse Cipher (Latihan Terpandu)
+
 1. **Latihan 1:**  
    *Tugas:* Ubah kode agar menerima input dari pengguna.  
    *Petunjuk:*  
@@ -132,7 +160,7 @@ print("Cipher Text  :", cipher)
    ```
 
 2. **Latihan 2:**  
-   *Tugas:* Tambahkan validasi agar hanya input string yang diterima.  
+   *Tugas:* Tambahkan validasi agar hanya input bertipe string yang diterima.  
    *Petunjuk:*  
    Tambahkan pengecekan:
    ```python
@@ -142,7 +170,7 @@ print("Cipher Text  :", cipher)
    ```
 
 3. **Latihan 3:**  
-   *Tugas:* Buat versi fungsi yang menggunakan slicing (`pesan[::-1]`).  
+   *Tugas:* Buat versi fungsi yang menggunakan slicing (misalnya, `pesan[::-1]`).  
    *Petunjuk:*  
    Definisikan:
    ```python
@@ -165,26 +193,29 @@ print("Cipher Text  :", cipher)
    ```python
    import time
    mulai = time.time()
-   # proses enkripsi
+   # Proses enkripsi di sini
+   cipher = reverse_cipher(pesan_asli)
    selesai = time.time()
    print("Waktu eksekusi:", selesai - mulai, "detik")
    ```
 
 #### Instruksi Tugas Reverse Cipher
-1. Buat program lengkap dengan pilihan mode enkripsi/dekripsi menggunakan Reverse Cipher.  
-2. Tambahkan opsi untuk menyimpan hasil enkripsi ke file teks.  
-3. Buat unit test dengan modul `unittest` untuk menguji fungsi reverse cipher.  
-4. Implementasikan versi Reverse Cipher dengan pendekatan rekursif.  
-5. Susun dokumentasi (dalam format Markdown) yang menjelaskan cara kerja dan penggunaan modul Reverse Cipher.
+
+- Buat program lengkap dengan pilihan mode enkripsi/dekripsi menggunakan Reverse Cipher.  
+- Tambahkan opsi untuk menyimpan hasil enkripsi ke file teks.  
+- Buat unit test dengan modul `unittest` untuk menguji fungsi reverse cipher.  
+- Implementasikan versi Reverse Cipher dengan pendekatan rekursif.  
+- Susun dokumentasi (dalam format Markdown) yang menjelaskan cara kerja dan penggunaan modul Reverse Cipher.
 
 ---
 
 ### 3.2 Caesar Cipher
 
 #### Konsep dan Algoritma
+
 Caesar Cipher adalah teknik substitusi dengan menggeser setiap huruf pada pesan sebanyak nilai pergeseran tertentu.  
-- **Proses:**  
-  Untuk setiap huruf, geser posisinya di alfabet. Karakter non-huruf tidak berubah.
+**Proses:**  
+Untuk setiap huruf, geser posisinya di alfabet; karakter non-huruf tetap tidak berubah.
 
 #### Contoh Kode
 ```python
@@ -197,16 +228,15 @@ def caesar_encrypt(teks, pergeseran):
         else:
             hasil += char
     return hasil
+
 def caesar_decrypt(teks, pergeseran):
     return caesar_encrypt(teks, -pergeseran)
-
 
 # Contoh penggunaan
 pesan_asli = "Contoh"
 pergeseran = 13
 cipher = caesar_encrypt(pesan_asli, pergeseran)
 plain = caesar_decrypt(cipher, pergeseran)
-
 
 print("Pesan Asli    :", pesan_asli)
 print("Cipher Text   :", cipher)
@@ -215,34 +245,32 @@ print("Dekripsi Hasil:", plain)
 
 #### Contoh Hacking Caesar Cipher (Brute Force)
 ```python
-message = 'Ykjpkd'  # Encrypted message
+message = 'Ykjpkd'  # Pesan terenkripsi
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-# Convert message to uppercase
+# Ubah pesan menjadi huruf kapital
 message = message.upper()
 
 for key in range(len(LETTERS)):
     translated = ''
-    
     for symbol in message:
         if symbol in LETTERS:
-            num = LETTERS.find(symbol) - key  # Shift backwards
+            num = LETTERS.find(symbol) - key  # Geser ke belakang
             if num < 0:
-                num += len(LETTERS)  # Wrap around
+                num += len(LETTERS)  # Lakukan wrap around
             translated += LETTERS[num]
         else:
-            translated += symbol  # Keep non-alphabet characters unchanged
-    
+            translated += symbol
     print(f"Hacking key #{key}: {translated}")
-
 ```
 *Penjelasan:* Kode di atas mencoba setiap nilai pergeseran (0–25) untuk menemukan kemungkinan dekripsi pesan.
 
 #### Latihan Caesar Cipher (Latihan Terpandu)
+
 1. **Latihan 1:**  
    *Tugas:* Pastikan fungsi hanya mengubah huruf, sedangkan angka dan simbol tetap tidak berubah.  
    *Petunjuk:*  
-   Verifikasi bahwa pengecekan `if char.isalpha()` sudah tepat.
+   Verifikasi pengecekan `if char.isalpha()`.
 
 2. **Latihan 2:**  
    *Tugas:* Buat antarmuka CLI yang menanyakan apakah pengguna ingin enkripsi atau dekripsi.  
@@ -276,36 +304,37 @@ for key in range(len(LETTERS)):
    Gunakan contoh seperti `"SMK"` dan `"smk"`.
 
 #### Instruksi Tugas Caesar Cipher
-1. Kembangkan program menu interaktif dengan pilihan mode: enkripsi, dekripsi, dan analisis teks terenkripsi.  
-2. Buat unit test untuk memastikan fungsi enkripsi dan dekripsi bekerja dengan benar.  
-3. Implementasikan fitur brute force yang mencoba semua pergeseran (0–25) dan menampilkan hasil dekripsi.  
-4. Tambahkan opsi untuk menyimpan hasil enkripsi/dekripsi ke file.  
-5. Susun laporan singkat mengenai kelemahan Caesar Cipher dan cara meningkatkan keamanannya.
+
+- Kembangkan program menu interaktif dengan pilihan mode: enkripsi, dekripsi, dan analisis teks terenkripsi.  
+- Buat unit test untuk memastikan fungsi enkripsi dan dekripsi bekerja dengan benar.  
+- Implementasikan fitur brute force yang mencoba semua pergeseran (0–25) dan menampilkan hasil dekripsi.  
+- Tambahkan opsi untuk menyimpan hasil enkripsi/dekripsi ke file.  
+- Susun laporan singkat mengenai kelemahan Caesar Cipher dan cara meningkatkan keamanannya.
 
 ---
 
 ### 3.3 ROT13
 
 #### Konsep dan Algoritma
+
 ROT13 adalah kasus khusus dari Caesar Cipher dengan pergeseran tetap 13. Karena alfabet terdiri atas 26 huruf, penerapan ROT13 dua kali akan mengembalikan pesan asli.
 
 #### Contoh Kode
 ```python
 import string
+
 def rot13(teks):
     tabel_trans = str.maketrans(
-string.ascii_uppercase + string.ascii_lowercase,
-string.ascii_uppercase[13:] + string.ascii_uppercase[:13] +
-string.ascii_lowercase[13:] + string.ascii_lowercase[:13]
-)
+        string.ascii_uppercase + string.ascii_lowercase,
+        string.ascii_uppercase[13:] + string.ascii_uppercase[:13] +
+        string.ascii_lowercase[13:] + string.ascii_lowercase[:13]
+    )
     return teks.translate(tabel_trans)
-
 
 # Contoh penggunaan
 pesan_asli = "Contoh"
 cipher = rot13(pesan_asli)
 plain = rot13(cipher)  # Penerapan kedua mengembalikan pesan asli
-
 
 print("Pesan Asli   :", pesan_asli)
 print("Cipher Text  :", cipher)
@@ -313,8 +342,9 @@ print("Dekripsi Hasil:", plain)
 ```
 
 #### Latihan ROT13 (Latihan Terpandu)
+
 1. **Latihan 1:**  
-   *Tugas:* Pastikan fungsi ROT13 hanya mengubah huruf, sedangkan angka dan simbol tidak berubah.  
+   *Tugas:* Pastikan fungsi ROT13 hanya mengubah huruf, sedangkan angka dan simbol tetap tidak berubah.  
    *Petunjuk:*  
    Verifikasi bahwa tabel translasi hanya mencakup huruf.
 
@@ -347,22 +377,26 @@ print("Dekripsi Hasil:", plain)
    Contoh: `"SMK"`.
 
 #### Instruksi Tugas ROT13
-1. Kembangkan antarmuka CLI untuk memilih mode ROT13 (enkripsi atau dekripsi).  
-2. Buat unit test untuk menguji fungsi ROT13 dengan berbagai jenis input.  
-3. Integrasikan fungsi ROT13 ke dalam aplikasi sederhana, misalnya simulasi pengiriman pesan terenkripsi.  
-4. Tambahkan opsi untuk menyimpan hasil enkripsi/dekripsi ke file.  
-5. Susun laporan yang menjelaskan kelebihan dan kekurangan ROT13 sebagai metode enkripsi.
+
+- Kembangkan antarmuka CLI untuk memilih mode ROT13 (enkripsi atau dekripsi).  
+- Buat unit test untuk menguji fungsi ROT13 dengan berbagai jenis input.  
+- Integrasikan fungsi ROT13 ke dalam aplikasi sederhana (misalnya, simulasi pengiriman pesan terenkripsi).  
+- Tambahkan opsi untuk menyimpan hasil enkripsi/dekripsi ke file.  
+- Susun laporan yang menjelaskan kelebihan dan kekurangan ROT13 sebagai metode enkripsi.
 
 ---
 
 ### 3.4 ROT18
 
 #### Konsep dan Algoritma
-ROT18 adalah variasi dari ROT13 yang juga mengubah angka dengan menggunakan ROT5.  
-- **Proses:**  
-  - Untuk huruf (kapital dan kecil), ROT18 melakukan ROT13 (geser 13 posisi).  
-  - Untuk digit (0-9), ROT18 melakukan ROT5 (geser 5 posisi, dengan modulus 10).  
-  - Karakter lain (simbol, spasi) tetap tidak berubah.
+
+ROT18 adalah variasi dari ROT13 yang juga mengubah angka dengan menggunakan ROT5.
+
+**Proses:**
+
+- Untuk huruf (kapital dan kecil), ROT18 melakukan ROT13 (geser 13 posisi).
+- Untuk digit (0–9), ROT18 melakukan ROT5 (geser 5 posisi dengan modulus 10).
+- Karakter lain (simbol, spasi) tetap tidak berubah.
 
 #### Contoh Kode
 ```python
@@ -375,16 +409,13 @@ def rot18(teks):
         string.ascii_uppercase[13:] + string.ascii_uppercase[:13] +
         string.ascii_lowercase[13:] + string.ascii_lowercase[:13]
     )
-    
     # Tabel translasi untuk digit dengan ROT5
     rot5_table = str.maketrans("0123456789", "5678901234")
     
     # Terapkan ROT13 untuk huruf
     hasil = teks.translate(rot13_table)
-    
     # Terapkan ROT5 untuk digit
     hasil = hasil.translate(rot5_table)
-    
     return hasil
 
 # Contoh penggunaan
@@ -395,10 +426,10 @@ plain = rot18(cipher)  # Penerapan kedua mengembalikan pesan asli
 print("Pesan Asli    :", pesan_asli)
 print("Cipher Text   :", cipher)
 print("Dekripsi Hasil:", plain)
-
 ```
 
 #### Latihan ROT18 (Latihan Terpandu)
+
 1. **Latihan 1:**  
    *Tugas:* Pastikan fungsi ROT18 hanya memproses huruf dan digit, sedangkan simbol serta spasi tetap tidak berubah.  
    *Petunjuk:*  
@@ -415,7 +446,7 @@ print("Dekripsi Hasil:", plain)
 3. **Latihan 3:**  
    *Tugas:* Tambahkan validasi agar input tidak kosong.  
    *Petunjuk:*  
-   Periksa apakah:
+   Periksa:
    ```python
    if teks.strip() == "":
        print("Input tidak boleh kosong!")
@@ -433,17 +464,19 @@ print("Dekripsi Hasil:", plain)
    Contoh: `"SMK 2023!"`.
 
 #### Instruksi Tugas ROT18
-1. Kembangkan antarmuka CLI untuk memilih mode ROT18 (enkripsi atau dekripsi).  
-2. Buat unit test untuk menguji fungsi ROT18 dengan berbagai jenis input (campuran huruf, angka, dan simbol).  
-3. Integrasikan fungsi ROT18 ke dalam aplikasi sederhana, misalnya simulasi pengiriman pesan terenkripsi yang juga memproses data numerik.  
-4. Tambahkan opsi untuk menyimpan hasil enkripsi/dekripsi ke file.  
-5. Susun laporan yang menjelaskan kelebihan dan kekurangan ROT18 sebagai metode enkripsi, serta perbandingannya dengan ROT13.
+
+- Kembangkan antarmuka CLI untuk memilih mode ROT18 (enkripsi atau dekripsi).  
+- Buat unit test untuk menguji fungsi ROT18 dengan berbagai jenis input (campuran huruf, angka, dan simbol).  
+- Integrasikan fungsi ROT18 ke dalam aplikasi sederhana, misalnya simulasi pengiriman pesan terenkripsi yang juga memproses data numerik.  
+- Tambahkan opsi untuk menyimpan hasil enkripsi/dekripsi ke file.  
+- Susun laporan yang menjelaskan kelebihan dan kekurangan ROT18 sebagai metode enkripsi, serta perbandingannya dengan ROT13.
 
 ---
 
 ## Kesimpulan
 
-Modul ini telah menggabungkan semua informasi penting dari referensi, sehingga kalian dapat memahami:
+Modul ini telah menggabungkan semua informasi penting sehingga kalian dapat memahami:
+
 - Dasar-dasar kriptografi, terminologi, dan konsep Double Strength Encryption.
 - Pengenalan Python, termasuk instalasi melalui terminal di Kali Linux, tipe data dasar, dan instalasi paket kriptografi.
 - Implementasi teknik enkripsi sederhana: Reverse Cipher, Caesar Cipher, ROT13, dan ROT18—lengkap dengan contoh kode, penjelasan, latihan terpandu, serta tugas praktik.
