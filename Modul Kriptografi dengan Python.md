@@ -196,7 +196,7 @@ print("Cipher Text  :", cipher)
    # Proses enkripsi di sini
    cipher = reverse_cipher(pesan_asli)
    selesai = time.time()
-   print("Waktu eksekusi:", selesai - mulai, "detik")
+   print("Waktu eksekusi: {:.6f} detik".format(selesai - mulai))
    ```
 
 #### Instruksi Tugas Reverse Cipher
